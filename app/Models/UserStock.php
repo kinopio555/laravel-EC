@@ -34,4 +34,16 @@ class UserStock extends Model
 
        return $message;
       }
+
+    public function deleteMyCartStock($stockId) {
+       $userId = Auth::id(); 
+       $deleteStockCount = $this->where('userId', $userId)->where('stockId',$stockId)->delete();
+       
+       if($deleteStockCount > 0){
+           $message = 'カートから一つの商品を削除しました';
+       }else{
+           $message = '削除に失敗しました';
+       }
+       return $message;
+      }
 }

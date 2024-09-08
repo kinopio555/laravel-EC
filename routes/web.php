@@ -24,6 +24,8 @@ Route::get('/', [StockController::class, 'index'])->name('stock.index');
 
 Route::get('/myCart', [StockController::class, 'myCart'])->name('stock.myCart');
 
+Route::post('/deleteMyCartStock', [StockController::class, 'deleteMyCartStock'])->name('stock.deleteMyCartStock');
+
 Route::middleware('auth')->group(function () {
     Route::get('/', [StockController::class, 'index'])->name('stock.index');
     Route::get('/myCart', [StockController::class, 'myCart'])->name('stock.myCart');
