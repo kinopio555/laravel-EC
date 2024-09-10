@@ -15,15 +15,20 @@
                             <form action="/deleteMyCartStock" method="post">
                                 @csrf
                                 <input type="hidden" name="stockId" value="{{ $stock->stock->id }}">
-                                <input type="submit" value="カートから削除する">
+                                <input class="bg-red-500 rounded" type="submit" value="カートから削除する">
                             </form>
                         </div>
-                    @endforeach
-                    {{-- 追加 --}}  
-                    @if($myCartStocks->isEmpty())
-                       <p class="text-center">カートはからっぽです。</p>
-                    @endif
-                </div>
+                        @endforeach
+                        {{-- 追加 --}}  
+                        @if($myCartStocks->isEmpty())
+                        <p class="text-center">カートはからっぽです。</p>
+                        @endif
+                    </div>
+                    <form action="/checkout">
+                        @csrf
+                        <input type="hidden" name="stockId" value="{{ $stock->stock->id }}">
+                        <input class="bg-green-400 rounded mt-3 mb-6 mr-10" type="submit" value="購入する">
+                    </form>
             </div>
     </div>
 </x-app-layout>

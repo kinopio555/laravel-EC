@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +26,8 @@ Route::get('/myCart', [StockController::class, 'myCart'])->name('stock.myCart');
 
 Route::post('/deleteMyCartStock', [StockController::class, 'deleteMyCartStock'])->name('stock.deleteMyCartStock');
 
+Route::get('/checkout', [CheckoutController::class, 'checkout'])->middleware(['auth'])->name('checkout');
+
 Route::middleware('auth')->group(function () {
     Route::get('/', [StockController::class, 'index'])->name('stock.index');
     Route::get('/myCart', [StockController::class, 'myCart'])->name('stock.myCart');
@@ -38,5 +40,14 @@ Route::middleware('auth')->group(function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::get('/success', function () {
+    return view('success');
+})->name('success');
+
+Route::get('/cancel', function () {
+    return view('cancel');
+})->name('cancel');
 
 require __DIR__.'/auth.php';
